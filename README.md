@@ -1,2 +1,2 @@
-# vimrc
-My personal VIM configuration
+# dotfiles
+My personal configuration
