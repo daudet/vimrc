@@ -1,0 +1,24 @@
+[submodule "vim/plugins/nerdtree"]
+	path = vim/plugins/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/plugins/vim-yaml"]
+	path = vim/plugins/vim-yaml
+	url = https://github.com/avakhov/vim-yaml
+[submodule "vim/plugins/indentpython.vim"]
+	path = vim/plugins/indentpython.vim
+	url = https://github.com/vim-scripts/indentpython.vim.git
+[submodule "vim/plugins/syntastic"]
+	path = vim/plugins/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "vim/plugins/ctrlp.vim"]
+	path = vim/plugins/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+[submodule "vim/plugins/vim-gitgutter"]
+	path = vim/plugins/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/plugins/vim-fugitive"]
+	path = vim/plugins/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/plugins/vim-airline"]
+	path = vim/plugins/vim-airline
+	url = https://github.com/bling/vim-airline
