@@ -22,3 +22,15 @@
 [submodule "vim/plugins/vim-airline"]
 	path = vim/plugins/vim-airline
 	url = https://github.com/bling/vim-airline
+[submodule "vim/plugins/dracula-theme"]
+	path = vim/plugins/dracula-theme
+	url = https://github.com/dracula/vim.git
+[submodule "vim/plugins/adventurous-theme"]
+	path = vim/plugins/adventurous-theme
+	url = https://github.com/Dru89/vim-adventurous.git
+[submodule "vim/plugins/neuromancer-theme"]
+	path = vim/plugins/neuromancer-theme
+	url = https://github.com/Zabanaa/neuromancer.vim.git
+[submodule "vim/plugins/distinguished-theme"]
+	path = vim/plugins/distinguished-theme
+	url = https://github.com/Lokaltog/vim-distinguished.git

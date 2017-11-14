@@ -1,7 +1,9 @@
 execute pathogen#infect()
 syntax on
+colorscheme distinguished
 filetype plugin indent on
 
+let g:airline_powerline_fonts = 1
 let python_highlight_all=1
 set encoding=utf-8
 set number
