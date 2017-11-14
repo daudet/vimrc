@@ -1,54 +1,82 @@
-execute pathogen#infect()
-syntax on
-colorscheme distinguished
-filetype plugin indent on
-
-let g:airline_powerline_fonts = 1
-let python_highlight_all=1
-set encoding=utf-8
-set number
-
-" sane backspace behaviour
+set nocompatible              " required
+filetype off                  " required
 set backspace=indent,eol,start
-
-
-" Set up sane tab behaviours
-set smartindent
+set clipboard=unnamed   " make clipboard work with osx
+set colorcolumn=80
+set smarttab
 set expandtab
-set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set tabstop=4
+highlight ColorColumn ctermbg=3
 
-" Let's try some spell-checking
-set spelllang=en_us
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Nice right-margin guide
-set colorcolumn=80
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Split navigations
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plugin 'junegunn/fzf.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+let g:airline_powerline_fonts = 1
+
+"split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Na-na na-na na-na na Leader
-let mapleader=","
+set encoding=utf-8
+set nu
+let python_highlight_all=1
 
-" Make the clipboard work with OSX
-set clipboard=unnamed
+" Leader
+let mapleader = ","
 
-" Open Nerd Tree with control-n 
-map <C-n> :NERDTreeToggle<CR>
+syntax enable
 
-" Syntastic Config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Give a shortcut key to NERD Tree
+map <silent> <C-n> :NERDTreeToggle<CR>
 
-" Use flake8 for python
-let g:syntastic_python_checkers = ['flake8']
+" Fuzzy Find with ripgrep
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+nnoremap <Leader>t :Find<CR>
