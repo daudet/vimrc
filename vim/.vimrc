@@ -3,14 +3,16 @@ syntax on
 colorscheme distinguished
 filetype plugin indent on
 
+let g:airline#extensions#syntastic#enabled = 1
 let g:airline_powerline_fonts = 1
+set laststatus=2
 let python_highlight_all=1
 set encoding=utf-8
 set number
+set hlsearch
 
 " sane backspace behaviour
 set backspace=indent,eol,start
-
 
 " Set up sane tab behaviours
 set smartindent
@@ -18,6 +20,7 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set textwidth=79
 
 " Let's try some spell-checking
 set spelllang=en_us
@@ -37,7 +40,7 @@ let mapleader=","
 " Make the clipboard work with OSX
 set clipboard=unnamed
 
-" Open Nerd Tree with control-n 
+" Open Nerd Tree with control-n
 map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic Config
