@@ -34,3 +34,6 @@
 [submodule "vim/plugins/distinguished-theme"]
 	path = vim/plugins/distinguished-theme
 	url = https://github.com/Lokaltog/vim-distinguished.git
+[submodule "vim/plugins/fzf.vim"]
+	path = vim/plugins/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git

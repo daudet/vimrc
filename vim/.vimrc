@@ -51,7 +51,19 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 " Use flake8 for python
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_exec = '/Users/daudet/.pyenv/shims/flake8'
+
+" Use FZF + Ripgrep
+set rtp+=/usr/local/opt/fzf
+
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{py,yaml,yml}"
+  \ -g "!{.git}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+map <silent> <C-f> :F<CR>
