@@ -57,13 +57,18 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_exec = '/Users/daudet/.pyenv/shims/flake8'
 
-" Use FZF + Ripgrep
+" Set Runtime Path to use FZF installed via Homebrew
 set rtp+=/usr/local/opt/fzf
 
-let g:rg_command = '
-  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{py,yaml,yml}"
-  \ -g "!{.git}/*" '
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+map <silent> <C-f> :Rg<CR>
 
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-map <silent> <C-f> :F<CR>
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+map <silent> <C-o> :Files<CR>
