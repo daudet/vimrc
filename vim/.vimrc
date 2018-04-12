@@ -60,15 +60,17 @@ let g:syntastic_python_flake8_exec = '/Users/daudet/.pyenv/shims/flake8'
 " Set Runtime Path to use FZF installed via Homebrew
 set rtp+=/usr/local/opt/fzf
 
+" FZF Grep using Ripgrep
+let rg_cmd='rg --column --line-number --no-heading --color=always '
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+  \ call fzf#vim#grep(rg_cmd.shellescape(<q-args>), 1, fzf#vim#with_preview(),
+  \ <bang>0)
 map <silent> <C-f> :Rg<CR>
 
 " Files command with preview window
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 map <silent> <C-o> :Files<CR>
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
