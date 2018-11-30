@@ -9,7 +9,10 @@ set laststatus=2
 let python_highlight_all=1
 set encoding=utf-8
 set number
+
+" Customize Search hightlight colouring
 set hlsearch
+hi Search ctermfg=DarkYellow ctermbg=LightYellow
 
 " sane backspace behaviour
 set backspace=indent,eol,start
@@ -26,7 +29,8 @@ set textwidth=79
 set spelllang=en_us
 
 " Nice right-margin guide
-set colorcolumn=80
+set cc=80
+:au BufWinEnter * let w:m1=matchadd('Error', '\%80v.\+', -1)
 
 " Split navigations
 nnoremap <C-J> <C-W><C-J>
