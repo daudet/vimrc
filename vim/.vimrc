@@ -1,7 +1,6 @@
 execute pathogen#infect()
 syntax on
 colorscheme distinguished
-filetype plugin indent on
 
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -17,16 +16,16 @@ set backspace=indent,eol,start
 " Set up sane tab behaviours
 set smartindent
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set textwidth=79
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set textwidth=100
 
 " Let's try some spell-checking
 set spelllang=en_us
 
 " Nice right-margin guide
-set colorcolumn=80
+set colorcolumn=101
 
 " Split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -42,6 +41,7 @@ set clipboard=unnamed
 
 " Open Nerd Tree with control-n
 map <C-n> :NERDTreeToggle<CR>
+:let g:NERDTreeWinSize=60
 
 " Syntastic Config
 set statusline+=%#warningmsg#
